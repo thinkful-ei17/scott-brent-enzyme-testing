@@ -16,3 +16,5 @@ export default function StatusSection(props) {
     </section>
   );
 }
+
+StatusSection.defaultProps = {guesses: []};

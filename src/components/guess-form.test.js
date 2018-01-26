@@ -9,4 +9,5 @@ describe('GuessForm component', () => {
   it('Smoke test to see if it renders component', () => {
     shallow(<GuessForm />)
   })
+
 })

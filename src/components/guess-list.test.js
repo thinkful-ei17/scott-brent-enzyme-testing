@@ -7,6 +7,12 @@ import './configureTests';
 
 describe('GuessList component', () => {
   it('Smoke test to see if it renders component', () => { 
-    shallow(<GuessList guesses={[1,2,3,4,5,6]}/>)
+    shallow(<GuessList />)
+  })
+
+  it('Passes props correctly', () => {
+    const guessArray = [56, 32, 71];
+    const wrapper = shallow( <GuessList guesses={guessArray} />);
+    expect(wrapper.contains(<li key={1}>{32}</li>)).toEqual(true);
   })
 })

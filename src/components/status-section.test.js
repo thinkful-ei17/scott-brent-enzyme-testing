@@ -7,6 +7,6 @@ import './configureTests';
 
 describe('StatusSection component', () => {
   it('Smoke test to see if it renders component', () => {
-    shallow(<StatusSection guesses={[1,2,3,4,5,6]} />)
+    shallow(<StatusSection />)
   })
 })
