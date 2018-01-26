@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Game from './game';
-import {shallow} from 'enzyme';
+import {shallow, mount} from 'enzyme';
 import './configureTests';
 
 describe('Game component', () => {
@@ -14,5 +14,20 @@ describe('Game component', () => {
     const wrapper = shallow(<Game />)
     expect(wrapper.state('feedback')).toEqual('Make your guess!')
   })
+
+  it('Should call the callback function ok', () => {
+    const callback = jest.fn();
+    const wrapper = mount(<Game onMakeGuess={callback()}/>);
+    wrapper.find('form').simulate('submit');
+    expect(callback).toHaveBeenCalled();  
+  })
+
+  it('Should call the callback function ok', () => {
+    const callback = jest.fn();
+    const wrapper = mount(<Game onRestartGame={callback()}/>);
+    wrapper.find('.new').simulate('click');
+    expect(callback).toHaveBeenCalled();
+  })
+
 })
   
