@@ -30,4 +30,64 @@ describe('Game component', () => {
   })
 
 })
-  
+
+describe('Feedback state', () => {
+  it("Should return 'You're Ice Cold...'", () => {
+    const wrapper = shallow(<Game />);
+    wrapper.setState({
+      correctAnswer:20,
+    });
+    wrapper.instance().makeGuess(100)
+    expect(wrapper.state('feedback')).toEqual('You\'re Ice Cold...');
+  })
+
+  it("Should return 'You're Cold...'", () => {
+    const wrapper = shallow(<Game />);
+    wrapper.setState({
+      correctAnswer: 20,
+    });
+    wrapper.instance().makeGuess(60)
+    expect(wrapper.state('feedback')).toEqual('You\'re Cold...');
+   
+  })
+
+  it("Should return 'You're Warm.'", () => {
+    const wrapper = shallow(<Game />);
+    wrapper.setState({
+      correctAnswer: 20,
+    });
+    wrapper.instance().makeGuess(35)
+    expect(wrapper.state('feedback')).toEqual('You\'re Warm.');
+  })
+
+  it("Should return 'You're Hot!'", () => {
+    const wrapper = shallow(<Game />);
+    wrapper.setState({
+      correctAnswer: 20,
+    });
+    wrapper.instance().makeGuess(25)
+    expect(wrapper.state('feedback')).toEqual('You\'re Hot!');
+  })
+
+  it("Should return 'You got it!'", () => {
+    const wrapper = shallow(<Game />);
+    wrapper.setState({
+      correctAnswer: 20,
+    });
+    wrapper.instance().makeGuess(20)
+    expect(wrapper.state('feedback')).toEqual('You got it!');
+  })
+})
+
+describe('Game reset', () => {
+  it('Should reset state to initial value', () => {
+    const originalState = {
+      guesses: [],
+      feedback: 'Make your guess!',
+      auralStatus: '',
+      correctAnswer: Math.floor(Math.random() * 100) + 1
+    }
+    const wrapper = shallow(<Game />);
+
+  })  
+})
