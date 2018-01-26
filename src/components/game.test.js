@@ -80,6 +80,7 @@ describe('Feedback state', () => {
 })
 
 describe('Game reset', () => {
+  
   it('Should reset state to initial value', () => {
     const originalState = {
       guesses: [],
@@ -89,5 +90,19 @@ describe('Game reset', () => {
     }
     const wrapper = shallow(<Game />);
 
-  })  
+    wrapper.setState({
+      guesses: [10, 20, 85, 76],
+      feedback: 'You got it!',
+      auralStatus: 'Ok',
+      correctAnswer: 76
+    });
+
+    wrapper.instance().restartGame();
+    expect(wrapper.state('guesses')).toEqual(originalState.guesses);
+    expect(wrapper.state('feedback')).toEqual(originalState.feedback);
+    expect(wrapper.state('auralStatus')).toEqual(originalState.auralStatus);
+    expect(wrapper.state('correctAnswer')).toBeLessThan(101);
+    expect(wrapper.state('correctAnswer')).toBeGreaterThan(0);
+    expect(Number.isInteger(wrapper.state('correctAnswer'))).toEqual(true);
+  });  
 })
